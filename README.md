@@ -1,5 +1,13 @@
 ## Composition du groupe
 
-1. ERGUN Sinan
-2. GITTEAU Sidney
-3. DECAMP Dayan 
+- ERGUN Sinan
+- GITTEAU Sidney
+- DECAMP Dayan 
+
+##### Question 1
+
+- symfony composer require symfony/webpack-encore-bundle
+- npm install
+- npm install sass-loader@^12.4.0 node-sass --save-dev
+- npm run build
+- npm install bootstrap
