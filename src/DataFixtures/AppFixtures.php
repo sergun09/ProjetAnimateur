@@ -10,9 +10,15 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $product = new Activite();
-        // $manager->persist($product);
+        $faker = \Faker\Factory::create("fr_FR");
+        $activite = new Activite();
 
+        for ($i = 0; $i < 5; $i++) {
+            $activite = new Activite();
+            $activite->setNom($faker->sentence)
+                ->setDescription(join("\n\n", $faker->paragraphs));
+            $manager->persist($activite);
+        }
         $manager->flush();
     }
 }
