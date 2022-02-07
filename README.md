@@ -4,7 +4,7 @@
 - GITTEAU Sidney
 - DECAMP Dayan 
 
-<p>Pour générer les dossiers var et vendor : **symfony composer require symfony/runtime</p>
+<p>Pour générer les dossiers var et vendor : **symfony composer require symfony/runtime**</p>
 
 ##### Question 1
 
@@ -15,6 +15,8 @@
 - npm install bootstrap
 
 ##### Question 2
+
+- <p>Pour générer les dossiers var et vendor (si ils n'existent pas) : **symfony composer require symfony/runtime**</p>
 
 - symfony console make:entity Activite
 - symfony console doctrine:database:create
