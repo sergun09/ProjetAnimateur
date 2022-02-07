@@ -21,7 +21,7 @@
 - symfony console make:migration
 - symfony console doctrine:migrations:migrate
 
-##### Question 2
+##### Question 3
 
 - symfony composer require orm-fixtures --dev
 - symfony console make:fixture
