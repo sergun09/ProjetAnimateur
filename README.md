@@ -11,3 +11,10 @@
 - npm install sass-loader@^12.4.0 node-sass --save-dev
 - npm run build
 - npm install bootstrap
+
+##### Question 2
+
+- symfony console make:entity Activite
+- symfony console doctrine:database:create
+- symfony console make:migration
+- symfony console doctrine:migrations:migrate
