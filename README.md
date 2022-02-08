@@ -31,3 +31,7 @@
 ##### Question 4
 
 - symfony console make:crud
+
+##### Question 5
+
+- Embellissement de l'application

@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>Activite index</h1>
-
+    <a class="btn btn-success" href="{{ path('activite_new') }}">Create new</a>
     <table class="table">
         <thead>
             <tr>
@@ -21,8 +21,8 @@
                 <td>{{ activite.Nom }}</td>
                 <td>{{ activite.Description }}</td>
                 <td>
-                    <a href="{{ path('activite_show', {'id': activite.id}) }}">show</a>
-                    <a href="{{ path('activite_edit', {'id': activite.id}) }}">edit</a>
+                    <a class="btn btn-primary mb-2" href="{{ path('activite_show', {'id': activite.id}) }}">show</a>
+                    <a class="btn btn-warning" href="{{ path('activite_edit', {'id': activite.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -33,5 +33,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('activite_new') }}">Create new</a>
 {% endblock %}
