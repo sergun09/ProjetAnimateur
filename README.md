@@ -27,3 +27,7 @@
 - symfony composer require orm-fixtures --dev
 - symfony console make:fixture
 - symfony console doctrine:fixtures:load
+
+##### Question 4
+
+- symfony console make:crud
