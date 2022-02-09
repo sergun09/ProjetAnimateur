@@ -21,23 +21,34 @@
 	</head>
 	<body>
 
-	<nav class="navbar navbar-expand-lg navbar-primary bg-primary">
-	<a class="navbar-brand text-light ml-2" href="#">CC33</a>
+		<nav class="navbar navbar-expand-lg navbar-primary bg-primary">
+			<a class="navbar-brand text-light ml-2" href="#">CC33</a>
 
-	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		<ul class="navbar-nav mr-auto">
-		<li class="nav-item active">
-			<a class="nav-link text-light" href="{{path("activite_index")}}">Activites</a>
-		</li>
-		<li class="nav-item active">
-			<a class="nav-link text-light" href="{{path("activite_new")}}">Créer une activité</a>
-		</li>
-		</ul>
-	</div>
-	</nav>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link text-light" href="{{path("activite_index")}}">Activites</a>
+					</li>
+					<li class="nav-item	">
+						<a class="nav-link text-light" href="{{path("activite_new")}}">Créer une activité</a>
+					</li>
+				</ul>
+			</div>
 
-	<div class="container">
-	{% block body %}{% endblock %}
-	</div>
-	</body>
-</html>
+			{% if not app.user %}
+				<div class="d-flex">
+					<a class="nav-link text-light" href="{{path("app_login")}}">Se connecter</a>
+					<a class="nav-link text-light" href="{{path("app_register")}}">Inscription</a>
+				</div>
+			{% else %}
+				<a class="nav-link text-light" href="{{path("app_logout")}}">Deconnexion</a>
+			{% endif %}
+
+
+		</nav>
+
+		<div class="container"> {% block body %}{% endblock %}
+			</div>
+		</body>
+	</html>
+</body></html>

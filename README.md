@@ -45,5 +45,10 @@
 
 ##### Question 7
 
--
+- symfony console make:user
+- symfony console make:entity User
+- symfony console make:migration
+- symfony console doctrine:migrations:migrate
+- symfony console make:auth
+- symfony console make:registration-form
 

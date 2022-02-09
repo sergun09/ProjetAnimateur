@@ -4,12 +4,12 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Activite index</h1>
+	<h1>Liste des activités</h1>
 	<a class="btn btn-success" href="{{ path('activite_new') }}">Create new</a>
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Id</th>
+
 				<th>Nom</th>
 				<th>Description</th>
 				<th>actions</th>
@@ -18,7 +18,6 @@
 		<tbody>
 			{% for activite in activites %}
 				<tr>
-					<td>{{ activite.id }}</td>
 					<td>{{ activite.Nom }}</td>
 					<td>{{ activite.Description | raw }}</td>
 					<td>
