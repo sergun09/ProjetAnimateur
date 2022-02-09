@@ -5,6 +5,9 @@
 - DECAMP Dayan 
 
 
+<p>Pour générer les dossiers var et vendor (si ils n'existent pas) : **symfony composer require symfony/runtime**</p>
+<p>Si vous n'avez pas les droits des actions CRUD sur la BDD : **chmod a+wrx var/CC.db**</p>
+
 ##### Question 1
 
 - symfony composer require symfony/webpack-encore-bundle
@@ -15,7 +18,6 @@
 
 ##### Question 2
 
-- <p>Pour générer les dossiers var et vendor (si ils n'existent pas) : **symfony composer require symfony/runtime**</p>
 
 - symfony console make:entity Activite
 - symfony console doctrine:database:create
@@ -40,4 +42,7 @@
 
 - composer require cebe/markdown
 
+##### Question 7
+
+-
 
