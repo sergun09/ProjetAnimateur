@@ -35,3 +35,9 @@
 ##### Question 5
 
 - Embellissement de l'application
+
+##### Question 6
+
+- composer require cebe/markdown
+
+

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Activite;
 use App\Form\ActiviteType;
 use App\Repository\ActiviteRepository;
+use cebe\markdown\Markdown;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,10 +16,18 @@ use Symfony\Component\Routing\Annotation\Route;
 class ActiviteController extends AbstractController
 {
     #[Route('/', name: 'activite_index', methods: ['GET'])]
-    public function index(ActiviteRepository $activiteRepository): Response
+    public function index(ActiviteRepository $activiteRepository, Markdown $markdown): Response
     {
+        $activites = $activiteRepository->findAll();
+        $parsedActivites = [];
+
+        foreach ($activites as $activite) {
+            $parsedActivite = $activite;
+            $parsedActivite->setDescription($markdown->parse($activite->getDescription()));
+            $parsedActivites[] = $activite;
+        }
         return $this->render('activite/index.html.twig', [
-            'activites' => $activiteRepository->findAll(),
+            'activites' => $activites,
         ]);
     }
 
@@ -71,7 +80,7 @@ class ActiviteController extends AbstractController
     #[Route('/{id}', name: 'activite_delete', methods: ['POST'])]
     public function delete(Request $request, Activite $activite, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$activite->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $activite->getId(), $request->request->get('_token'))) {
             $entityManager->remove($activite);
             $entityManager->flush();
         }
