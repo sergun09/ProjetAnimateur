@@ -26,6 +26,7 @@
 
 ##### Question 3
 
+- symfony composer require fakerphp/faker
 - symfony composer require orm-fixtures --dev
 - symfony console make:fixture
 - symfony console doctrine:fixtures:load
