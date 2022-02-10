@@ -39,9 +39,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Activite::class)]
     private $activites;
 
+    #[ORM\ManyToMany(targetEntity: Activite::class, mappedBy: 'userInscrit')]
+    private $ActivitesInscrit;
+
     public function __construct()
     {
         $this->activites = new ArrayCollection();
+        $this->ActivitesInscrit = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -163,6 +167,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             if ($activite->getUser() === $this) {
                 $activite->setUser(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Activite[]
+     */
+    public function getActivitesInscrit(): Collection
+    {
+        return $this->ActivitesInscrit;
+    }
+
+    public function addActivitesInscrit(Activite $activitesInscrit): self
+    {
+        if (!$this->ActivitesInscrit->contains($activitesInscrit)) {
+            $this->ActivitesInscrit[] = $activitesInscrit;
+            $activitesInscrit->addUserInscrit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeActivitesInscrit(Activite $activitesInscrit): self
+    {
+        if ($this->ActivitesInscrit->removeElement($activitesInscrit)) {
+            $activitesInscrit->removeUserInscrit($this);
         }
 
         return $this;

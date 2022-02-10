@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ActiviteRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ActiviteRepository::class)]
@@ -22,6 +24,14 @@ class Activite
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'activites')]
     #[ORM\JoinColumn(nullable: false)]
     private $user;
+
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'ActivitesInscrit')]
+    private $userInscrit;
+
+    public function __construct()
+    {
+        $this->userInscrit = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -60,6 +70,30 @@ class Activite
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUserInscrit(): Collection
+    {
+        return $this->userInscrit;
+    }
+
+    public function addUserInscrit(User $userInscrit): self
+    {
+        if (!$this->userInscrit->contains($userInscrit)) {
+            $this->userInscrit[] = $userInscrit;
+        }
+
+        return $this;
+    }
+
+    public function removeUserInscrit(User $userInscrit): self
+    {
+        $this->userInscrit->removeElement($userInscrit);
 
         return $this;
     }

@@ -20,12 +20,26 @@
 		</tbody>
 	</table>
 
-	<a class="btn btn-info" href="{{ path('activite_index') }}">back to list</a>
+	<div></div<aclass="btnbtn-info"href="{{path('activite_index')}}">back to list</a>
 
-	{% if app.user %}
+{% if app.user %}
+	<div class="row">
 		<a class="btn btn-warning ml-2" href="{{ path('activite_edit', {'id': activite.id}) }}">edit</a>
 		{{ include('activite/_delete_form.html.twig') }}
-	{% endif %}
+		<a class="btn btn-primary mb-2" href="{{ path('activite_inscription', {'id': activite.id}) }}">Inscription à l'activité</a>
+		<a class="btn btn-danger mb-2" href="{{ path('activite_desinscription', {'id': activite.id}) }}">Désinscription de l'activité</a>
+	</div>
+{% endif %}
 
-
-{% endblock %}
+<section id="inscription">
+	<h4>{{ activite.userInscrit | length}}
+		inscrits</h4>
+	{% for user in activite.userInscrit %}
+		<div class="inscription">
+			<div class="row">
+				{{user.username}}
+				est inscrit !
+			</div>
+		</div>
+	{% endfor %}
+</section>{% endblock %}

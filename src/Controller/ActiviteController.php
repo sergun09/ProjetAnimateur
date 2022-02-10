@@ -6,8 +6,10 @@ use App\Entity\Activite;
 use App\Entity\User;
 use App\Form\ActiviteType;
 use App\Repository\ActiviteRepository;
+use App\Repository\ActiviteUserRepository;
 use cebe\markdown\Markdown;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -64,6 +66,33 @@ class ActiviteController extends AbstractController
         return $this->render('activite/show.html.twig', [
             'activite' => $activite,
         ]);
+    }
+
+
+    #[Route('/{id}/inscription', name: 'activite_inscription', methods: ['GET'])]
+    /** 
+     *
+     * @IsGranted("ROLE_ANIMATEUR")
+     */
+    public function activite_inscription(Activite $activite, EntityManagerInterface $entityManager): Response
+    {
+        $activite->addUserInscrit($this->getUser());
+        $entityManager->persist($activite);
+        $entityManager->flush();
+        return $this->redirectToRoute('activite_show', ['id' => $activite->getId()]);
+    }
+
+    #[Route('/{id}/desinscription', name: 'activite_desinscription', methods: ['GET'])]
+    /** 
+     *
+     * @IsGranted("ROLE_ANIMATEUR")
+     */
+    public function activite_desinscription(Activite $activite, EntityManagerInterface $entityManager): Response
+    {
+        $activite->removeUserInscrit($this->getUser());
+        $entityManager->persist($activite);
+        $entityManager->flush();
+        return $this->redirectToRoute('activite_show', ['id' => $activite->getId()]);
     }
 
 
