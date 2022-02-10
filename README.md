@@ -69,3 +69,7 @@
 ##### Question 10
 
 - Utilisations des annotations pour restreindre l'accès à l'edit et au delete
+
+##### Question 11
+
+- Embellissement de l'application
