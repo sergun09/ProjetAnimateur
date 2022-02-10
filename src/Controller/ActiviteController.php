@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Activite;
+use App\Entity\User;
 use App\Form\ActiviteType;
 use App\Repository\ActiviteRepository;
 use cebe\markdown\Markdown;
@@ -11,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 
 #[Route('/activite')]
 class ActiviteController extends AbstractController
@@ -35,12 +37,15 @@ class ActiviteController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $activite = new Activite();
+        $user = $this->getUser();
         $form = $this->createForm(ActiviteType::class, $activite);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($activite);
+            $activite->setUser($user);
             $entityManager->flush();
+
 
             return $this->redirectToRoute('activite_index', [], Response::HTTP_SEE_OTHER);
         }

@@ -7,6 +7,9 @@
 
 <p>Pour générer les dossiers var et vendor (si ils n'existent pas) : **symfony composer require symfony/runtime**</p>
 <p>Si vous n'avez pas les droits des actions CRUD sur la BDD : **chmod a+wrx var/CC.db**</p>
+<p>Pour générer la BBD : symfony console doctrine:migrations:migrate </p>
+<p>Pour géréler les fixtures : symfony console doctrine:fixtures:load</p>
+<p>Il arrive que WebPack se désinstalle pour une raison inconnu (entrypoints.js does not exist) alors : npm install @symfony/webpack-encore --dev</p>
 
 ##### Question 1
 
@@ -52,3 +55,9 @@
 - symfony console make:auth
 - symfony console make:registration-form
 
+##### Question 8
+
+- symfony console make:entity Activite
+- symfony console make:migration
+- symfony console doctrine:migrations:migrate
+- symfony console doctrine:fixtures:load
