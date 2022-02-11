@@ -4,9 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Activite
-		{{activite.Nom}}</h1>
-
+	<h1 class="my-5">Activite {{activite.Nom}}</h1>
 	<table class="table">
 		<tbody>
 			<tr>
@@ -20,26 +18,34 @@
 		</tbody>
 	</table>
 
-	<div></div<aclass="btnbtn-info"href="{{path('activite_index')}}">back to list</a>
+	<a class="btn btn-info"href="{{path('activite_index')}}">Retour aux activites</a>
 
 {% if app.user %}
-	<div class="row">
-		<a class="btn btn-warning ml-2" href="{{ path('activite_edit', {'id': activite.id}) }}">edit</a>
-		{{ include('activite/_delete_form.html.twig') }}
-		<a class="btn btn-primary mb-2" href="{{ path('activite_inscription', {'id': activite.id}) }}">Inscription à l'activité</a>
-		<a class="btn btn-danger mb-2" href="{{ path('activite_desinscription', {'id': activite.id}) }}">Désinscription de l'activité</a>
-	</div>
+    <a button type="button" class="btn btn-warning" href="{{ path('activite_edit', {'id': activite.id}) }}">Edition</button></a>
+    <a button type="button" class="btn btn-primary" href="{{ path('activite_inscription', {'id': activite.id}) }}">Inscription</button></a>
+    <a button type="button" class="btn btn-danger"href="{{ path('activite_desinscription', {'id': activite.id}) }}">Désinscription</button></a>
+
 {% endif %}
 
-<section id="inscription">
+<section class="mt-3" id="inscription">
 	<h4>{{ activite.userInscrit | length}}
 		inscrits</h4>
-	{% for user in activite.userInscrit %}
-		<div class="inscription">
-			<div class="row">
-				{{user.username}}
-				est inscrit !
+	<ul class="list-group">
+		{% for user in activite.userInscrit %}
+			<div class="inscription">
+
+				<div class="row">
+					<li class="list-group-item">
+						{{user.username}}
+						est inscrit !
+					</li>
+				</div>
 			</div>
-		</div>
-	{% endfor %}
-</section>{% endblock %}
+		{% endfor %}
+	</ul>
+</section>
+
+{% if app.user %}
+{{ include('activite/_delete_form.html.twig') }}
+{% endif %}
+{% endblock %}

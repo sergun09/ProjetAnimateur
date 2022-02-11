@@ -14,8 +14,8 @@ class ActiviteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('Nom', TextType::class, ['attr' => ['class' => 'form-control']])
-            ->add('Description', TextareaType::class, ['attr' => ['class' => 'form-control', 'style' => 'height:200px']]);
+            ->add('Nom', TextType::class, ['attr' => ['class' => 'form-control', 'style' => 'margin-top:10px; margin-bottom:10px;']])
+            ->add('Description', TextareaType::class, ['attr' => ['class' => 'form-control', 'style' => 'height:200px; margin-top:10px; margin-bottom:10px;']]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

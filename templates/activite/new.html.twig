@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Créer une Activité</h1>
+	<h1 class="my-5">Créer une Activité</h1>
 
 	{{form_start(form)}}
 
@@ -20,9 +20,9 @@
 		{{form_widget(form.Description)}}
 	</div>
 
-	<button class="btn btn-success mt-2">{{ button_label|default('Save') }}</button>
+	<button class="btn btn-success mt-2 w-100">{{ button_label|default('Save') }}</button>
 	{{form_end(form)}}
 
 	{{form_end(form)}}
-	<a class="btn btn-info mt-1" href="{{ path('activite_index') }}">back to list</a>
+	<a class="btn btn-info mt-2 w-100" href="{{ path('activite_index') }}">back to list</a>
 {% endblock %}
