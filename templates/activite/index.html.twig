@@ -23,6 +23,7 @@
 					<td>{{ activite.Description | raw }}</td>
 					<td>
 						<a class="btn btn-primary mb-2" href="{{ path('activite_show', {'id': activite.id}) }}">Voir</a>
+						<a class="btn btn-primary mb-2" href="{{ path('activite_inscription', {'id': activite.id}) }}">Inscription à l'activité</a>
 						{% if app.user %}
 							<a class="btn btn-warning" href="{{ path('activite_edit', {'id': activite.id}) }}">Editer</a>
 							{{ include('activite/_delete_form.html.twig') }}
