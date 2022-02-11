@@ -85,3 +85,7 @@
 - symfony console make:entity User
 - symfony console make:migration
 - symfony console doctrine:migrations:migrate
+
+##### Question 14
+
+- Embellissement de l'application
