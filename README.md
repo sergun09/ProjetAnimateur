@@ -73,3 +73,9 @@
 ##### Question 11
 
 - Embellissement de l'application
+
+##### Question 11
+
+- symfony console make:entity Activite
+- symfony console make:migration
+- symfony console doctrine:migrations:migrate
