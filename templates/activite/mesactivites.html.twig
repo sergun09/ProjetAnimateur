@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Activites
+{% endblock %}
+
+{% block body %}
+	<h1>Mes activités</h1>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Nom</th>
+				<th>Description</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for activite in user.ActivitesInscrit %}
+				<tr>
+					<td>{{ activite.Nom }}</td>
+					<td>{{ activite.Description | raw }}</td>
+					<td>
+						<a class="btn btn-primary mb-2" href="{{ path('activite_show', {'id': activite.id}) }}">Voir</a>
+						<a class="btn btn-danger mb-2" href="{{ path('activite_desinscription', {'id': activite.id}) }}">Désinscription de l'activité</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="4">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock %}

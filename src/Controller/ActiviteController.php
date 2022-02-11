@@ -2,20 +2,21 @@
 
 namespace App\Controller;
 
-use App\Entity\Activite;
 use App\Entity\User;
+use App\Entity\Activite;
 use App\Form\ActiviteType;
-use App\Repository\ActiviteRepository;
-use App\Repository\ActiviteUserRepository;
 use cebe\markdown\Markdown;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\UserRepository;
+use App\Repository\ActiviteRepository;
 use Doctrine\Persistence\ObjectManager;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\ActiviteUserRepository;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/activite')]
 class ActiviteController extends AbstractController
@@ -69,12 +70,25 @@ class ActiviteController extends AbstractController
     }
 
 
+    /** 
+     *
+     * @IsGranted("ROLE_ANIMATEUR")
+     */
+    #[Route('/{id}/mesactivites', name: 'activite_mesactivites', methods: ['GET'])]
+    public function mesactivites(User $user): Response
+    {
+        return $this->render('activite/mesactivites.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+
     #[Route('/{id}/inscription', name: 'activite_inscription', methods: ['GET'])]
     /** 
      *
      * @IsGranted("ROLE_ANIMATEUR")
      */
-    public function activite_inscription(Activite $activite, EntityManagerInterface $entityManager): Response
+    public function activite_inscription(Activite $activite, EntityManagerInterface $entityManager, Security $secu): Response
     {
         $activite->addUserInscrit($this->getUser());
         $entityManager->persist($activite);
