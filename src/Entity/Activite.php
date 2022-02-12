@@ -6,6 +6,7 @@ use App\Repository\ActiviteRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Cascade;
 
 #[ORM\Entity(repositoryClass: ActiviteRepository::class)]
 class Activite
@@ -22,7 +23,7 @@ class Activite
     private $Description;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'activites')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'Cascade')]
     private $user;
 
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'ActivitesInscrit')]

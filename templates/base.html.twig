@@ -29,14 +29,24 @@
 					<li class="nav-item active">
 						<a class="nav-link text-light" href="{{path("activite_index")}}">Activites</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link text-light" href="{{path("activite_new")}}">Créer une activité</a>
-					</li>
 
 					{% if app.user %}
 						<li class="nav-item	">
 							<a class="nav-link text-light" href="{{path('activite_mesactivites', {'id': app.user.id | default('0') })}}">Mes Inscriptions</a>
 						</li>
+
+						{% if (is_granted('ROLE_ADMIN')) or (is_granted('ROLE_ANIMATEUR')) %}
+						<li class="nav-item">
+							<a class="nav-link text-light" href="{{path("activite_new")}}">Créer une activité</a>
+						</li>
+						{% endif %}
+
+						{% if (is_granted('ROLE_ADMIN'))%}
+							<li class="nav-item">
+								<a class="nav-link text-light" href="{{path("user_index")}}">Gérer les Animateurs</a>
+							</li>
+						{% endif %}
+
 					{% endif %}
 				</ul>
 			</div>
@@ -57,4 +67,4 @@
 			</div>
 		</body>
 	</html>
-</body></html></body></html>
+</body></html></body></html></body></html>

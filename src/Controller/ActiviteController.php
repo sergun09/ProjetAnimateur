@@ -38,6 +38,10 @@ class ActiviteController extends AbstractController
     }
 
     #[Route('/new', name: 'activite_new', methods: ['GET', 'POST'])]
+        /** 
+     *
+     * @IsGranted("ROLE_ANIMATEUR")
+     */
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $activite = new Activite();
@@ -69,11 +73,6 @@ class ActiviteController extends AbstractController
         ]);
     }
 
-
-    /** 
-     *
-     * @IsGranted("ROLE_ANIMATEUR")
-     */
     #[Route('/{id}/mesactivites', name: 'activite_mesactivites', methods: ['GET'])]
     public function mesactivites(User $user): Response
     {
@@ -86,7 +85,7 @@ class ActiviteController extends AbstractController
     #[Route('/{id}/inscription', name: 'activite_inscription', methods: ['GET'])]
     /** 
      *
-     * @IsGranted("ROLE_ANIMATEUR")
+     * @IsGranted("ROLE_ENFANT")
      */
     public function activite_inscription(Activite $activite, EntityManagerInterface $entityManager, Security $secu): Response
     {
@@ -99,7 +98,7 @@ class ActiviteController extends AbstractController
     #[Route('/{id}/desinscription', name: 'activite_desinscription', methods: ['GET'])]
     /** 
      *
-     * @IsGranted("ROLE_ANIMATEUR")
+     * @IsGranted("ROLE_ENFANT")
      */
     public function activite_desinscription(Activite $activite, EntityManagerInterface $entityManager): Response
     {
@@ -114,6 +113,7 @@ class ActiviteController extends AbstractController
     /** 
      *
      * @IsGranted("ROLE_ANIMATEUR")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Activite $activite, EntityManagerInterface $entityManager): Response
     {
@@ -136,6 +136,7 @@ class ActiviteController extends AbstractController
     /** 
      *
      * @IsGranted("ROLE_ANIMATEUR")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Activite $activite, EntityManagerInterface $entityManager): Response
     {

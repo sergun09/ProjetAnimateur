@@ -21,10 +21,11 @@
 	<a class="btn btn-info"href="{{path('activite_index')}}">Retour aux activites</a>
 
 {% if app.user %}
+	{% if (is_granted('ROLE_ANIMATEUR')) or (is_granted('ROLE_ADMIN')) %}
     <a button type="button" class="btn btn-warning" href="{{ path('activite_edit', {'id': activite.id}) }}">Edition</button></a>
+	{% endif %}
     <a button type="button" class="btn btn-primary" href="{{ path('activite_inscription', {'id': activite.id}) }}">Inscription</button></a>
     <a button type="button" class="btn btn-danger"href="{{ path('activite_desinscription', {'id': activite.id}) }}">Désinscription</button></a>
-
 {% endif %}
 
 <section class="mt-3" id="inscription">
@@ -45,7 +46,7 @@
 	</ul>
 </section>
 
-{% if app.user %}
+{% if (is_granted('ROLE_ANIMATEUR')) or (is_granted('ROLE_ADMIN'))%}
 {{ include('activite/_delete_form.html.twig') }}
 {% endif %}
 {% endblock %}
