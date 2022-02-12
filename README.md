@@ -92,7 +92,8 @@
 
 - symfony console:make crud User
 
+
 ##### Question 16
 
-- Utilisation des annotations
+- Gestion des autorisations avec les annotations
 
