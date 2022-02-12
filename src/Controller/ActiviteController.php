@@ -38,7 +38,7 @@ class ActiviteController extends AbstractController
     }
 
     #[Route('/new', name: 'activite_new', methods: ['GET', 'POST'])]
-        /** 
+    /** 
      *
      * @IsGranted("ROLE_ANIMATEUR")
      */
@@ -83,23 +83,19 @@ class ActiviteController extends AbstractController
 
 
     #[Route('/{id}/inscription', name: 'activite_inscription', methods: ['GET'])]
-    /** 
-     *
-     * @IsGranted("ROLE_ENFANT")
-     */
     public function activite_inscription(Activite $activite, EntityManagerInterface $entityManager, Security $secu): Response
     {
-        $activite->addUserInscrit($this->getUser());
-        $entityManager->persist($activite);
-        $entityManager->flush();
-        return $this->redirectToRoute('activite_show', ['id' => $activite->getId()]);
+        if($this->getUser() != null)
+        {
+            $activite->addUserInscrit($this->getUser());
+            $entityManager->persist($activite);
+            $entityManager->flush();
+            return $this->redirectToRoute('activite_show', ['id' => $activite->getId()]);
+        }
+        return $this->redirectToRoute('app_login');       
     }
 
     #[Route('/{id}/desinscription', name: 'activite_desinscription', methods: ['GET'])]
-    /** 
-     *
-     * @IsGranted("ROLE_ENFANT")
-     */
     public function activite_desinscription(Activite $activite, EntityManagerInterface $entityManager): Response
     {
         $activite->removeUserInscrit($this->getUser());
@@ -113,7 +109,6 @@ class ActiviteController extends AbstractController
     /** 
      *
      * @IsGranted("ROLE_ANIMATEUR")
-     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Activite $activite, EntityManagerInterface $entityManager): Response
     {
@@ -136,7 +131,7 @@ class ActiviteController extends AbstractController
     /** 
      *
      * @IsGranted("ROLE_ANIMATEUR")
-     * @IsGranted("ROLE_ADMIN")
+     * 
      */
     public function delete(Request $request, Activite $activite, EntityManagerInterface $entityManager): Response
     {
