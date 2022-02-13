@@ -4,10 +4,17 @@
 - GITTEAU Sidney
 - DECAMP Dayan 
 
-<p>BDD déjà remplie !</p>
-<p>Pour générer les dossiers var et vendor (si ils n'existent pas) : **symfony composer require symfony/runtime**</p>
-<p>Si vous n'avez pas les droits des actions CRUD sur la BDD : **chmod a+wrx var/CC.db**</p>
-<p>Il arrive que WebPack se désinstalle pour une raison inconnu (entrypoints.js does not exist) alors : npm install @symfony/webpack-encore --dev</p>
+**COMMANDE A EFFECTUER AVANT DE DEMARRER LE PROJET**
+<p>BDD déjà remplie  et fournie!</p>
+<p>Pour générer le vendor : symfony composer require symfony/runtime</p>
+<p>Droits d'accès à la BDD : **chmod a+wrx var/CC.db**</p>
+<p>Il arrive que WebPack se désinstalle pour une raison inconnu (entrypoints.js does not exist) alors : npm install @symfony/webpack-encore --dev puis npm run watch</p>
+
+**COMPTES**
+
+<p>Admin => Username : Admin28 | Password : Admin123</p>
+<p>Animateur => Username : BobAnim | Password : Bob123</p>
+<p>Enfant => Username : Enfant45 | Password : Enfant123</p>
 
 ##### Question 1
 
