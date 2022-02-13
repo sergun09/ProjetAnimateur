@@ -3,15 +3,13 @@
 {% block title %}Liste Animateurs{% endblock %}
 
 {% block body %}
-    <h1>User index</h1>
-
+    <h1 class="my-5">Liste des Users</h1>
+        <a class="btn btn-success mb-2" href="{{ path('user_new') }}">Créer Utilisateur</a>
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Username</th>
                 <th>Roles</th>
-                <th>Password</th>
                 <th>Nom</th>
                 <th>Prenom</th>
                 <th>Actions</th>
@@ -20,15 +18,13 @@
         <tbody>
         {% for user in users %}
             <tr>
-                <td>{{ user.id }}</td>
                 <td>{{ user.username }}</td>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.password }}</td>
                 <td>{{ user.nom }}</td>
                 <td>{{ user.prenom }}</td>
                 <td>
-                    <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+                    <a class="btn btn-primary mb-2 w-100" href="{{ path('user_show', {'id': user.id}) }}">Voir</a>
+                    <a class="btn btn-warning mb-2 w-100" href="{{ path('user_edit', {'id': user.id}) }}">Editer</a>
                     {{ include('user/_delete_form.html.twig') }}
                 </td>
             </tr>
@@ -40,5 +36,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('user_new') }}">Create new</a>
 {% endblock %}

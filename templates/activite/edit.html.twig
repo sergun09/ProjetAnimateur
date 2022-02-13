@@ -3,11 +3,11 @@
 {% block title %}Edit Activite{% endblock %}
 
 {% block body %}
-    <h1 class="my-5">Edit Activite</h1>
+    <h1 class="my-5">Edition Activite</h1>
 
     {{ include('activite/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
-    <a class="btn btn-info mt-2 w-100" ref="{{ path('activite_index') }}">Retour aux activites</a>
-
     {{ include('activite/_delete_form.html.twig') }}
+
+    <a class="btn btn-info mt-2 w-100" ref="{{ path('activite_index') }}">Retour aux activites</a>
 {% endblock %}

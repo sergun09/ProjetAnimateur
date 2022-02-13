@@ -38,10 +38,6 @@ class ActiviteController extends AbstractController
     }
 
     #[Route('/new', name: 'activite_new', methods: ['GET', 'POST'])]
-    /** 
-     *
-     * @IsGranted("ROLE_ANIMATEUR")
-     */
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $activite = new Activite();
@@ -106,10 +102,6 @@ class ActiviteController extends AbstractController
 
 
     #[Route('/{id}/edit', name: 'activite_edit', methods: ['GET', 'POST'])]
-    /** 
-     *
-     * @IsGranted("ROLE_ANIMATEUR")
-     */
     public function edit(Request $request, Activite $activite, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ActiviteType::class, $activite);
@@ -128,11 +120,6 @@ class ActiviteController extends AbstractController
     }
 
     #[Route('/{id}', name: 'activite_delete', methods: ['POST'])]
-    /** 
-     *
-     * @IsGranted("ROLE_ANIMATEUR")
-     * 
-     */
     public function delete(Request $request, Activite $activite, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $activite->getId(), $request->request->get('_token'))) {

@@ -7,7 +7,7 @@
 **COMMANDE A EFFECTUER AVANT DE DEMARRER LE PROJET**
 <p>BDD déjà remplie  et fournie!</p>
 <p>Pour générer le vendor :  symfony composer require symfony/runtime</p>
-<p>Droits d'accès à la BDD : **chmod a+wrx var/CC.db**</p>
+<p>Droits d'accès à la BDD : **chmod a+wrx var/CC.db** puis **chmod 777 var**</p>
 <p>Il arrive que WebPack se désinstalle pour une raison inconnu (entrypoints.js does not exist) alors : npm install @symfony/webpack-encore --dev puis npm run watch</p>
 
 **COMPTES**
@@ -102,5 +102,9 @@
 
 ##### Question 16
 
-- Gestion des autorisations avec les annotations
+- Gestion des autorisations
+
+##### Question 17
+
+- Embellissement de l'application
 
