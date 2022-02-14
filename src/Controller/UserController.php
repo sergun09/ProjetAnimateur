@@ -32,7 +32,6 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user->setRoles( array('ROLE_ANIMATEUR'));
             $user->setPassword($userPasswordHasher->hashPassword(
                 $user,
                 $form->get('password')->getData()
