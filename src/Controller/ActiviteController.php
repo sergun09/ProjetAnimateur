@@ -69,7 +69,7 @@ class ActiviteController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/mesactivites', name: 'activite_mesactivites', methods: ['GET'])]
+    #[Route('/mesactivites/{id}', name: 'activite_mesactivites', methods: ['GET'])]
     public function mesactivites(User $user): Response
     {
         return $this->render('activite/mesactivites.html.twig', [
@@ -78,7 +78,7 @@ class ActiviteController extends AbstractController
     }
 
 
-    #[Route('/{id}/inscription', name: 'activite_inscription', methods: ['GET'])]
+    #[Route('/inscription/{id}', name: 'activite_inscription', methods: ['GET'])]
     public function activite_inscription(Activite $activite, EntityManagerInterface $entityManager, Security $secu): Response
     {
         if($this->getUser() != null)
@@ -91,7 +91,7 @@ class ActiviteController extends AbstractController
         return $this->redirectToRoute('app_login');       
     }
 
-    #[Route('/{id}/desinscription', name: 'activite_desinscription', methods: ['GET'])]
+    #[Route('/desinscription/{id}', name: 'activite_desinscription', methods: ['GET'])]
     public function activite_desinscription(Activite $activite, EntityManagerInterface $entityManager): Response
     {
         $activite->removeUserInscrit($this->getUser());
@@ -101,7 +101,7 @@ class ActiviteController extends AbstractController
     }
 
 
-    #[Route('/{id}/edit', name: 'activite_edit', methods: ['GET', 'POST'])]
+    #[Route('/edit/{id}', name: 'activite_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Activite $activite, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ActiviteType::class, $activite);
@@ -119,7 +119,7 @@ class ActiviteController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'activite_delete', methods: ['POST'])]
+    #[Route('/delete/{id}', name: 'activite_delete', methods: ['POST'])]
     public function delete(Request $request, Activite $activite, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $activite->getId(), $request->request->get('_token'))) {
